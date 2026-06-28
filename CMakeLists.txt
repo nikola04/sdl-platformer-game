@@ -33,6 +33,14 @@ target_link_directories(
     /opt/homebrew/opt/sdl2/lib
 )
 
-target_link_libraries(game SDL2::SDL2 SDL2_image::SDL2_image)
+if(WIN32)
+    target_link_libraries(game SDL2::SDL2main SDL2::SDL2 SDL2_image::SDL2_image)
+else()
+    target_link_libraries(game SDL2::SDL2 SDL2_image::SDL2_image)
+endif()
 
-target_compile_definitions(game PRIVATE ASSETS_PATH="${CMAKE_SOURCE_DIR}/assets/")
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    target_compile_definitions(game PRIVATE ASSETS_PATH="./assets/")
+else()
+    target_compile_definitions(game PRIVATE ASSETS_PATH="${CMAKE_SOURCE_DIR}/assets/")
+endif()

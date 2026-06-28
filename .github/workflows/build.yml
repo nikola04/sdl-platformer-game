@@ -25,7 +25,7 @@ jobs:
               run: cmake --build build --config Release
 
             - name: Zip
-              run: Compress-Archive -Path build/Release/game.exe, build/Release/*.dll -DestinationPath game-windows-amd64.zip
+              run: Compress-Archive -Path build/Release/game.exe, build/Release/*.dll, assets -DestinationPath game-windows-amd64.zip
 
             - name: Upload artifact
               uses: actions/upload-artifact@v4
@@ -54,7 +54,7 @@ jobs:
               run: cmake --build build
 
             - name: Zip
-              run: zip game-macos-apple-silicon.zip build/game
+              run: zip -r game-macos-apple-silicon.zip build/game assets/
 
             - name: Upload artifact
               uses: actions/upload-artifact@v4
