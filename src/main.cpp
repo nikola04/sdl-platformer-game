@@ -1,5 +1,6 @@
 #include "engine/Engine.hpp"
-#include "game/Square.hpp"
+#include "game/Platform.hpp"
+#include "game/Player.hpp"
 #include <SDL.h>
 #include <memory>
 
@@ -9,7 +10,8 @@ int main(int argc, char* argv[]){
     }
 
     Engine engine;
-    engine.addObject(std::make_unique<Square>());
+    engine.addObject(std::make_unique<Platform>());
+    engine.addObject(std::make_unique<Player>());
     engine.run();
 
     SDL_Quit();

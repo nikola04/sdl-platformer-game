@@ -1,5 +1,6 @@
 #pragma once
 
+#include "PhysicsSystem.hpp"
 #include "Window.hpp"
 #include "Input.hpp"
 #include "Renderer.hpp"
@@ -22,6 +23,7 @@ class Engine {
 
         Window window;
         Renderer renderer;
+        PhysicsSystem physicsSystem;
 
         void update(float dt, Input &input);
         void render();

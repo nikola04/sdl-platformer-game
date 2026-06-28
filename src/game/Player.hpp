@@ -2,12 +2,14 @@
 
 #include "../engine/GameObject.hpp"
 
-class Square : public GameObject {
+class Player : public GameObject {
+    private:
+        RigidBody rb;
+        bool doubleJumped;
     public:
-        Square();
+        Player();
         void render(Renderer* renderer) override;
         void update(float dt, Input &input) override;
 
-    private:
-        float x, y, w, h;
+        RigidBody* getRigidBody() override;
 };
