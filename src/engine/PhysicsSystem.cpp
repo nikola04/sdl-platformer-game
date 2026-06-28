@@ -11,6 +11,7 @@ bool PhysicsSystem::overlaps(GameObject* a, GameObject* b) {
 void PhysicsSystem::resolveX(GameObject* obj, RigidBody* rb, std::vector<std::unique_ptr<GameObject>>& objects) {
     for (auto& other : objects) {
         if (other.get() == obj) continue;
+        if (!other->collidable) continue;
         if (other->getRigidBody()) continue; // skip dynamic objects
         if (!overlaps(obj, other.get())) continue;
 
@@ -29,6 +30,7 @@ void PhysicsSystem::resolveX(GameObject* obj, RigidBody* rb, std::vector<std::un
 void PhysicsSystem::resolveY(GameObject* obj, RigidBody* rb, std::vector<std::unique_ptr<GameObject>>& objects) {
     for (auto& other : objects) {
         if (other.get() == obj) continue;
+        if (!other->collidable) continue;
         if (other->getRigidBody()) continue; // skip dynamic objects
         if (!overlaps(obj, other.get())) continue;
 

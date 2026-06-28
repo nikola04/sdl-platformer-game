@@ -1,21 +1,13 @@
 #include "Platform.hpp"
+#include "../engine/ResourceManager.hpp"
 
-Platform::Platform() {
-    x = 50;
-    y = 550;
-    w = 500;
-    h = 30;
+Platform::Platform(float x, float y, float w, float h): GameObject(x, y, w, h) {
+    texture = ResourceManager::get().load(ASSETS_PATH "platform.png");
 }
 
 void Platform::render(Renderer* renderer) {
-    SDL_Rect rect;
+    SDL_Rect src = { 0, 0, 190, 190 };
+    SDL_Rect dest = { (int)x, (int)y, (int)w, (int)h };
 
-    rect.x = x;
-    rect.y = y;
-    rect.w = w;
-    rect.h = h;
-
-    SDL_SetRenderDrawColor(renderer->get(), 110, 255, 145, 255);
-
-    SDL_RenderFillRect(renderer->get(), &rect);
+    SDL_RenderCopy(renderer->get(), texture, &src, &dest);
 }

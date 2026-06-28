@@ -7,13 +7,16 @@
 #include <cstdio>
 #include <memory>
 #include "Config.hpp"
+#include "ResourceManager.hpp"
 
 Engine::Engine(): physicsSystem(WINDOW_WIDTH, WINDOW_HEIGHT),
     input(),
     objects(),
     running(true),
     window("Game", WINDOW_WIDTH, WINDOW_HEIGHT),
-    renderer(window.get(), WINDOW_WIDTH, WINDOW_HEIGHT) {};
+    renderer(window.get(), WINDOW_WIDTH, WINDOW_HEIGHT) {
+    ResourceManager::get().init(renderer.get());
+};
 
 void Engine::addObject(std::unique_ptr<GameObject> object) {
     objects.push_back(std::move(object));

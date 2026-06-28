@@ -16,7 +16,6 @@ class Engine {
 
         Input input;
 
-
     private:
         bool running;
         std::vector<std::unique_ptr<GameObject>> objects;
