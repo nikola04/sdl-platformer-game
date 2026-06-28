@@ -26,8 +26,15 @@ void Square::render(Renderer* renderer) {
     );
 }
 
-void Square::update(float dt) {
+void Square::update(float dt, Input &input) {
     float fps = 1.0f / dt;
-    x += 100 * dt;
-    // printf("UPDATE %f \n", fps);
+    if (input.isHeld(SDLK_LEFT))
+        x -= 100 * dt;
+    if (input.isHeld(SDLK_RIGHT))
+        x += 100 * dt;
+    if (input.isHeld(SDLK_UP))
+        y -= 100 * dt;
+    if (input.isHeld(SDLK_DOWN))
+        y += 100 * dt;
+    printf("Updating square in %f fps \n", fps);
 }

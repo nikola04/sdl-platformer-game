@@ -11,6 +11,7 @@ add_executable(
     game
     src/main.cpp
     src/engine/Engine.cpp
+    src/engine/Input.cpp
     src/engine/Renderer.cpp
     src/engine/Window.cpp
     src/game/Square.cpp

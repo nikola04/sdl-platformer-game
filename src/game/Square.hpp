@@ -6,8 +6,8 @@ class Square : public GameObject {
     public:
         Square();
         void render(Renderer* renderer) override;
-        void update(float dt) override;
+        void update(float dt, Input &input) override;
 
     private:
-        int x, y, w, h;
+        float x, y, w, h;
 };

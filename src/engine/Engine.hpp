@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Window.hpp"
+#include "Input.hpp"
 #include "Renderer.hpp"
 #include "GameObject.hpp"
 #include <memory>
@@ -12,6 +13,8 @@ class Engine {
         void addObject(std::unique_ptr<GameObject> object);
         void run();
 
+        Input input;
+
 
     private:
         bool running;
@@ -20,6 +23,6 @@ class Engine {
         Window window;
         Renderer renderer;
 
-        void update(float dt);
+        void update(float dt, Input &input);
         void render();
 };
