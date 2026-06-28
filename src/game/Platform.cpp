@@ -2,7 +2,7 @@
 #include "../engine/ResourceManager.hpp"
 
 Platform::Platform(float x, float y, float w, float h): GameObject(x, y, w, h) {
-    texture = ResourceManager::get().load(ASSETS_PATH "platform.png");
+    texture = ResourceManager::get().load("assets/platform.png");
 }
 
 void Platform::render(Renderer* renderer) {

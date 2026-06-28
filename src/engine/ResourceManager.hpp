@@ -17,5 +17,6 @@ class ResourceManager {
 
     private:
         SDL_Renderer* renderer;
+        std::string basePath;
         std::pmr::unordered_map<std::string, SDL_Texture*> cache;
 };

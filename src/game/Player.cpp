@@ -6,7 +6,7 @@
 Player::Player(): GameObject(150, 500, 57, 84), rb(), doubleJumped(false) {
     for (int i = 0; i < 20; i++) {
         char path[256];
-        snprintf(path, sizeof(path), ASSETS_PATH "2/2_enemies_1_walk_%03d.png", i);
+        snprintf(path, sizeof(path), "assets/2/2_enemies_1_walk_%03d.png", i);
         walkFrames.push_back(ResourceManager::get().load(path));
     }
 }

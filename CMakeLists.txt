@@ -39,8 +39,3 @@ else()
     target_link_libraries(game SDL2::SDL2 SDL2_image::SDL2_image)
 endif()
 
-if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    target_compile_definitions(game PRIVATE ASSETS_PATH="./assets/")
-else()
-    target_compile_definitions(game PRIVATE ASSETS_PATH="${CMAKE_SOURCE_DIR}/assets/")
-endif()

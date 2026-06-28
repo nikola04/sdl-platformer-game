@@ -5,12 +5,17 @@
 void ResourceManager::init(SDL_Renderer* renderer) {
     this->renderer = renderer;
     IMG_Init(IMG_INIT_PNG);
+
+    char* base = SDL_GetBasePath();
+    basePath = base ? base : "./";
+    SDL_free(base);
 }
 
 SDL_Texture* ResourceManager::load(const std::string& path) {
     if (cache.count(path)) return cache[path];
 
-    SDL_Surface* surface = IMG_Load(path.c_str());
+    std::string fullPath = basePath + path;
+    SDL_Surface* surface = IMG_Load(fullPath.c_str());
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
 
