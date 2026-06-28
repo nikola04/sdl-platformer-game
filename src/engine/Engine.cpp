@@ -4,23 +4,25 @@
 #include "Renderer.hpp"
 #include <SDL.h>
 #include <chrono>
+#include <cstdio>
 #include <memory>
-
-const int WINDOW_WIDTH = 1280;
-const int WINDOW_HEIGHT = 720;
+#include "Config.hpp"
 
 Engine::Engine(): physicsSystem(WINDOW_WIDTH, WINDOW_HEIGHT),
     input(),
     objects(),
     running(true),
     window("Game", WINDOW_WIDTH, WINDOW_HEIGHT),
-    renderer(window.get()) {};
+    renderer(window.get(), WINDOW_WIDTH, WINDOW_HEIGHT) {};
 
 void Engine::addObject(std::unique_ptr<GameObject> object) {
     objects.push_back(std::move(object));
 }
 
 void Engine::run() {
+    printf("Starting engine...\n");
+    renderer.printRendererInfo();
+
     auto last = std::chrono::high_resolution_clock::now();
 
     while (running) {

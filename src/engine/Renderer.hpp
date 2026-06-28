@@ -4,12 +4,13 @@
 
 class Renderer {
     public:
-        Renderer(SDL_Window* window);
+        Renderer(SDL_Window* window, int width, int height);
 
         ~Renderer();
 
         void clear();
         void present();
+        void printRendererInfo();
 
         SDL_Renderer* get();
 
