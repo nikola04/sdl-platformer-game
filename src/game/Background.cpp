@@ -3,7 +3,7 @@
 #include "../engine/Config.hpp"
 
 Background::Background(): GameObject(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, false) {
-    texture = ResourceManager::get().load(ASSETS_PATH "background.png");
+    texture = ResourceManager::get().load(ASSETS_PATH "background/level1_classic.png");
 }
 
 void Background::render(Renderer* renderer) {

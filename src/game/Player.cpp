@@ -3,12 +3,8 @@
 #include <SDL_render.h>
 #include <cstdio>
 
-Player::Player(): GameObject(150, 500, 57, 84), rb(), doubleJumped(false) {
-    for (int i = 0; i < 20; i++) {
-        char path[256];
-        snprintf(path, sizeof(path), ASSETS_PATH "2/2_enemies_1_walk_%03d.png", i);
-        walkFrames.push_back(ResourceManager::get().load(path));
-    }
+Player::Player(): GameObject(150, 500, 64, 56), rb(), doubleJumped(false) {
+    walkSprite = ResourceManager::get().load(ASSETS_PATH "player/DinoSprites - mort.png");
 }
 
 RigidBody* Player::getRigidBody() {
@@ -16,11 +12,12 @@ RigidBody* Player::getRigidBody() {
 }
 
 void Player::render(Renderer* renderer) {
-    SDL_Rect src = { 50, 30, 190, 280 };
+    int spriteX = currentFrame * 24;
+    SDL_Rect src = { spriteX, 0, 24, 20 };
     SDL_Rect dest = { (int)x, (int)y, (int)w, (int)h };
 
     SDL_RendererFlip flip = facingBack ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
-    SDL_RenderCopyEx(renderer->get(), walkFrames[currentFrame], &src, &dest, 0, NULL, flip);
+    SDL_RenderCopyEx(renderer->get(), walkSprite, &src, &dest, 0, NULL, flip);
 }
 
 void Player::update(float dt, Input &input) {
@@ -47,9 +44,10 @@ void Player::update(float dt, Input &input) {
     }
 
     frameTimer += dt;
-    if (frameTimer >= 0.016f) {
+    if (frameTimer >= 0.036f) {
         frameTimer = 0;
-        if (rb.vx != 0)
-            currentFrame = (currentFrame + 1) % walkFrames.size();
+        if (!rb.onGround) currentFrame = (currentFrame + 1) % jumpFrames + firstJumpFrame;
+        else if(rb.vx != 0) currentFrame = (currentFrame + 1) % walkFrames + firstWalkFrame;
+        else currentFrame = 1;
     }
 }
